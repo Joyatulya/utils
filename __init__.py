@@ -1,0 +1,1 @@
+BASE_DIR = '/mnt/c/Users/Joy/Desktop/central_repo/notification'

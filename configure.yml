@@ -1,0 +1,15 @@
+EMAIL:
+  username: admin@joyfulmeds.com
+  password: JSxGxH.M5.L38Ly
+  port: 465
+  hostname: smtp.hostinger.com
+
+SMS:
+  account_sid: AC0986ba740335c2cf15816a98a033b995
+  auth_token: 7754d4d1462418d4a77f1b979d99f51d
+  phone_no: +19036368517
+
+TELEGRAM:
+  TOKEN: 5246515788:AAG0hTyppSx683ezq0jlwDK_YTQcJ-EC77M
+  API_ID: 14601878
+  API_HASH: 6951b56ffbc9357c824c0d3540bd0304
