@@ -23,7 +23,10 @@ def load_and_prep_image(filename, img_shape=224, scale=False, expand_dims = True
     # Rescale the image (get all values between 0 and 1)
     img = img/255.
   
-  return tf.expand_dims(img,0) if expand_dims else img
+  if expand_dims:
+    return tf.expand_dims(img,0) 
+  else:
+    return img
 
 # Note: The following confusion matrix code is a remix of Scikit-Learn's 
 # plot_confusion_matrix function - https://scikit-learn.org/stable/modules/generated/sklearn.metrics.plot_confusion_matrix.html
