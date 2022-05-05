@@ -287,3 +287,71 @@ def calculate_results(y_true, y_pred):
                   "recall": model_recall,
                   "f1": model_f1}
   return model_results
+
+def image_prediction(image,
+                     model,
+                     class_labels = None,
+                     true_label = None,
+                     img_shape = 224,
+                     scale_img = False,
+                     expand_dims = True,
+                     plot = False,
+                     verbose = 0):
+  
+  """
+  Function to make prediction on the image and plot it using the given model.
+
+  Parameters
+  -----------------------
+  image : Can be both a single image or an array of images
+  model: the neural network model according to which you want to predict
+  true_label: the real label of the image(s)
+  verbose: To output the reports or not
+  plot: To plot the images or not,
+   keep in mind, too big of an array of images 
+  might not be good for the pc
+  """
+ 
+  if isinstance(image,str):
+    img = load_and_prep_image(image,
+                              img_shape = img_shape,
+                              scale = scale_img,
+                              expand_dims = expand_dims)
+  if isinstance(image,tf.Tensor):
+    if image.ndim == 3:
+      img = tf.expand_dims(image,0)
+  
+  prediction = model.predict(img)[0]
+ 
+  if len(prediction) == 1:
+    # Binary classification task
+    prediction_surity = np.round(prediction[0] * 100,2)
+    rounded_prediction = np.round(prediction[0])
+    # print(rounded_prediction)
+    prediction_name = class_labels[rounded_prediction]
+  else:
+    # Multiclass Classification
+    max_idx = prediction.argmax()
+    prediction_name = class_labels[max_idx]
+    prediction_surity = np.round(prediction.max() * 100, 2)
+
+  single_img = img[0]
+  if single_img.dtype == tf.float32:
+    single_img = single_img / 255.
+  if plot == True:
+    font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 19,
+        }
+    if true_label == prediction_name:
+      font['color'] = 'green'
+    plt.imshow(single_img)
+    plt.title(f'True label - {true_label}',fontdict = {**font})
+    plt.xlabel( f'Prediction - {prediction_name}, {prediction_surity}%',fontdict = {**font})
+    # plt.axis()
+    plt.xticks([])
+    plt.yticks([])
+    
+
+  return prediction_name, prediction_surity, single_img
