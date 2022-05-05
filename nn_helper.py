@@ -2,9 +2,9 @@
 ### Storing them here so they're easily accessible.
 
 import tensorflow as tf
-
+import matplotlib.image as mpimg
 # Create a function to import an image and resize it to be able to be used with our model
-def load_and_prep_image(filename, img_shape=224, scale=True):
+def load_and_prep_image(filename, img_shape=224, scale=False, expand_dims = True):
   """
   Reads in an image from filename, turns it into a tensor and reshapes into
   (224, 224, 3).
@@ -16,16 +16,14 @@ def load_and_prep_image(filename, img_shape=224, scale=True):
   scale (bool): whether to scale pixel values to range(0, 1), default True
   """
   # Read in the image
-  img = tf.io.read_file(filename)
-  # Decode it into a tensor
-  img = tf.image.decode_jpeg(img)
+  img = mpimg.imread(filename)
   # Resize the image
   img = tf.image.resize(img, [img_shape, img_shape])
   if scale:
     # Rescale the image (get all values between 0 and 1)
-    return img/255.
-  else:
-    return img
+    img = img/255.
+  
+  return tf.expand_dims(img,0) if expand_dims else img
 
 # Note: The following confusion matrix code is a remix of Scikit-Learn's 
 # plot_confusion_matrix function - https://scikit-learn.org/stable/modules/generated/sklearn.metrics.plot_confusion_matrix.html
