@@ -28,3 +28,17 @@ def lrfn(rampup_epochs = 5
   
   return inner
 
+import tensorflow as tf
+import os
+def tpu_strat():
+  """
+  tpu = tf.distribute.cluster_resolver.TPUClusterResolver(tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
+  tf.config.experimental_connect_to_cluster(tpu)
+  tf.tpu.experimental.initialize_tpu_system(tpu)
+  tpu_strategy = tf.distribute.experimental.TPUStrategy(tpu)
+  """
+  tpu = tf.distribute.cluster_resolver.TPUClusterResolver(tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
+  tf.config.experimental_connect_to_cluster(tpu)
+  tf.tpu.experimental.initialize_tpu_system(tpu)
+  tpu_strategy = tf.distribute.experimental.TPUStrategy(tpu)
+  return tpu_strategy

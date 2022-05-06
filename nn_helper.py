@@ -357,7 +357,7 @@ def image_prediction(image,
   return prediction_name, prediction_surity, single_img
 
 def compile_model(model,
-                  loss = tf.keras.loss.SparseCategoricalCrossEntroy(),
+                  loss = tf.keras.losses.SparseCategoricalCrossentropy(),
                   optimizer = tf.keras.optimizers.Adam(),
                   metrics = ['accuracy']):
   
@@ -366,5 +366,5 @@ def compile_model(model,
                 metrics = metrics
                )
 
- def early_stop():
+def early_stop():
   return tf.keras.callbacks.EarlyStopping('val_loss',patience = 3)
