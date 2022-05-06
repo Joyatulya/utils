@@ -355,3 +355,16 @@ def image_prediction(image,
     
 
   return prediction_name, prediction_surity, single_img
+
+def compile_model(model,
+                  loss = tf.keras.loss.SparseCategoricalCrossEntroy(),
+                  optimizer = tf.keras.optimizers.Adam(),
+                  metrics = ['accuracy']):
+  
+  model.compile(loss = loss,
+                optimizer = optimizer,
+                metrics = metrics
+               )
+
+ def early_stop():
+  return tf.keras.callbacks.EarlyStopping('val_loss',patience = 3)
