@@ -1,6 +1,6 @@
 import os
 
-def load_unzip_kaggle_dataset(dataset_name,unzip_name):
+def load_unzip_kaggle_dataset(dataset_name):
 
   # Mounting Google Drive
   exec('from google.colab import drive')
@@ -14,6 +14,3 @@ def load_unzip_kaggle_dataset(dataset_name,unzip_name):
   # Downloading the dataset
   print("Downloading ")
   os.system(f'kaggle datasets download -d {dataset_name}')
-
-  # Unzipping to file system
-  os.system(f'{unzip_name}.zip')
