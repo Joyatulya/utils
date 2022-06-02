@@ -10,6 +10,7 @@ def load_unzip_kaggle_dataset(dataset_name):
   print('Copying kaggle.json')
   os.makedirs('/root/.kaggle',exist_ok=True)
   os.system('cp ./drive/MyDrive/kaggle.json /root/.kaggle/')
+  os.system('cp ./drive/MyDrive/.netrc /root/.netrc')
 
   # Downloading the dataset
   print("Downloading ")
