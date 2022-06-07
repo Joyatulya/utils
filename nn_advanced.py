@@ -1,3 +1,4 @@
+import wandb
 def lrfn(rampup_epochs = 5
         ,max_lr = .001,
         start_lr = 0.00001,
@@ -18,7 +19,8 @@ def lrfn(rampup_epochs = 5
   rampup_epochs = Epochs till which the learning rate should go up
   exp_decay = How fast should the lr decay after it has achieved its max
   '''
-  def inner(epoch):
+  def inner(epoch, lr):
+    wandb.log({'lr' : lr})
     if epoch < rampup_epochs:
       return (max_lr - start_lr)/rampup_epochs * epoch + start_lr
     elif epoch < rampup_epochs + sustain_epochs:
