@@ -1,17 +1,12 @@
 import os
-
-def load_unzip_kaggle_dataset(dataset_name):
+import subproess
+def mount_drive_wandb():
 
   # Mounting Google Drive
   exec('from google.colab import drive')
   exec("drive.mount('/content/drive')")
 
-  # Moving kaggle.json to the root directory
-  print('Copying kaggle.json')
-  os.makedirs('/root/.kaggle',exist_ok=True)
-  os.system('cp ./drive/MyDrive/kaggle.json /root/.kaggle/')
+  # subprocess.run(['cp', ''])
+  os.system('cp ./drive/MyDrive/.gitconfig /root/.gitconfig')
   os.system('cp ./drive/MyDrive/.netrc /root/.netrc')
-
-  # Downloading the dataset
-  print("Downloading ")
-  os.system(f'kaggle datasets download -d {dataset_name}')
+  os.system('cp ./drive/MyDrive/kaggle.json /root/kaggle.json')
