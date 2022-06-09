@@ -8,4 +8,4 @@ def mount_drive_wandb():
   # subprocess.run(['cp', ''])
   os.system('cp ./drive/MyDrive/.gitconfig /root/.gitconfig')
   os.system('cp ./drive/MyDrive/.netrc /root/.netrc')
-  os.system('cp ./drive/MyDrive/kaggle.json /root/kaggle.json')
+  os.system('cp ./drive/MyDrive/kaggle.json /root/.kaggle/kaggle.json')
