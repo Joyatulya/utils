@@ -10,3 +10,10 @@ def config_files():
   os.system('cp ./drive/MyDrive/kaggle.json /root/.kaggle/kaggle.json')
   os.system('cp ./drive/MyDrive/.gitconfig /root/.gitconfig')
   os.system('cp ./drive/MyDrive/.netrc /root/.netrc')
+
+def set_all_seeds(SEED):
+    # REPRODUCIBILITY
+    torch.manual_seed(SEED)
+    np.random.seed(SEED)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
