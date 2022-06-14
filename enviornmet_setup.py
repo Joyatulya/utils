@@ -3,7 +3,7 @@ import os
 
 def mount_drive():
   print('Mounting Drive')
-  drive.mount('/gdrive')
+  drive.mount('/content/drive')
 
 def config_files():
   print('Copying Kaggle/wandb/git')
