@@ -1,6 +1,7 @@
 import pytorch_lightning as pl
 import torch
-from torchvision import models, nn
+from torchvision import models
+from torch import nn
 from torch import optim
 
 class SimCLR(pl.LightningModule):
