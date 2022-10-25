@@ -30,3 +30,19 @@ def plot_cf_matrix(cf_matrix):
             zip(group_names,group_counts,group_percentages)]
   labels = np.asarray(labels).reshape(2,2)
   sns.heatmap(cf_matrix, annot=labels, fmt='', cmap='Blues')
+  
+import warnings
+import statsmodels.api as sm
+import scipy.stats as stats
+def visualise_continous(df, columns):
+  warnings.filterwarnings('ignore')
+  fig,ax = plt.subplots(15,3,figsize=(30,90))
+  for index,i in enumerate(columns):
+      sns.distplot(df[i],ax=ax[index,0])
+      sns.boxplot(df[i],ax=ax[index,1])
+      stats.probplot(df[i],plot=ax[index,2])
+
+  fig.tight_layout()
+  fig.subplots_adjust(top=0.95)
+  plt.suptitle("Visualizing Continuous Columns",fontsize=50)
+  plt.show()
